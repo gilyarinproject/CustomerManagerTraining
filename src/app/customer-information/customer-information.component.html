@@ -1,0 +1,39 @@
+<div class="wrapper-container">
+  <div class="title">
+    <mat-icon>person</mat-icon> {{title}}
+  </div>
+
+  <div class="menu">
+    <button mat-button
+            [ngStyle]="{'opacity': (menuOption === 'Customer Details') ? 1 : 0.5}"
+            (click)="onClickDetails()">
+      <mat-icon>list</mat-icon>
+      Customer Details
+    </button>
+    <button mat-button
+            [ngStyle]="{'opacity': (menuOption === 'Customer Orders') ? 1 : 0.5}"
+            (click)="onClickOrders()">
+      <mat-icon>local_offer</mat-icon>
+      Customer Orders
+    </button>
+    <button mat-button
+            [ngStyle]="{'opacity': (menuOption === 'Edit Customer') ? 1 : 0.5}"
+            (click)="onClickEdit()">
+      <mat-icon>edit</mat-icon>
+      Edit Customer
+    </button>
+  </div>
+
+  <div [ngSwitch]="menuOption" class="content-info">
+    <app-edit-customer *ngSwitchCase="'Edit Customer'" [customer]="customer"></app-edit-customer>
+    <div *ngSwitchCase="'Customer Orders'" class="orders">
+      <span>Orders for {{customer | fullName}}</span>
+      <app-customer-orders [customer]="customer"></app-customer-orders>
+    </div>
+    <app-customer-details *ngSwitchCase="'Customer Details'" [customer]="customer"></app-customer-details>
+  </div>
+
+</div>
+
+
+<!--<app-edit-customer *ngSwitchCase="'Customer Details'"></app-edit-customer>-->

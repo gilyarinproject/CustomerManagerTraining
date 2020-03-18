@@ -1,0 +1,25 @@
+.title {
+  font-size: large;
+}
+
+.form-container {
+  margin-left: 5%;
+  margin-top: 1%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  margin-top: 2%;
+  width: 25%;
+}
+
+.green-button {
+  color: white;
+  background-color: #96d196;
+  width: 5%;
+  margin-top: 2%;
+}

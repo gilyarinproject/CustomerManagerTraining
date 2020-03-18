@@ -1,0 +1,55 @@
+.card-wrapper {
+  width: 320px;
+  height: 150px;
+  border-style: solid;
+  border-color: gray;
+  padding-bottom: 2%;
+  border-width: thin;
+  margin-left: 5%;
+}
+
+.card-top {
+  color: white;
+  background-color: #027ff4;
+  display: flex;
+  justify-content: space-between;
+  font-size: medium;
+  align-items: center;
+}
+
+a.pen {
+  color: white;
+}
+
+span {
+  margin-left: 1%;
+}
+
+mat-icon {
+  margin-right: 1%;
+}
+
+img {
+  width: 26%;
+  margin-left: 1%;
+  margin-top: 1%;
+}
+
+.card-bottom {
+  display: flex;
+  /*justify-content: space-between;*/
+}
+
+.right-part-card {
+  margin-top: 3%;
+  margin-left: 10%;
+  font-size: medium;
+}
+
+.address {
+  margin-bottom: 5%;
+}
+
+a {
+  text-decoration: none;
+}

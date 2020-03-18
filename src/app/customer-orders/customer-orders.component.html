@@ -1,0 +1,10 @@
+<div *ngIf="customer.orders" class="orders-wrapper">
+  <div class="list">
+    <div class="list-item" *ngFor="let order of customer.orders">
+      <span class="left">{{order.itemName}}</span>
+      <span class="right">{{order.itemPrice}}</span>
+    </div>
+    <hr>
+  </div>
+  <div class="right">{{customer | orderTotal}}</div>
+</div>

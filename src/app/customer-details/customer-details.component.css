@@ -1,0 +1,15 @@
+.details-wrapper {
+  display: flex;
+  width: 15%;
+  justify-content: space-between;
+  margin-top: 2%;
+  margin-left: 2%
+}
+
+img {
+  width: 100px;
+}
+
+.name {
+  margin-bottom: 12%;
+}

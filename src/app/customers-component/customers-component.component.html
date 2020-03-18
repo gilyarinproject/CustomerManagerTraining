@@ -1,0 +1,40 @@
+<div class="wrapper-container">
+  <div class="title">
+    <mat-icon>person</mat-icon> Customers
+  </div>
+
+  <div class="menu">
+    <button mat-button
+            [ngStyle]="{'opacity': (menuOption === 'Card View') ? 1 : 0.5}"
+            (click)="onClickCard()">
+      <mat-icon>view_module</mat-icon>
+      Card View
+    </button>
+    <button mat-button
+            [ngStyle]="{'opacity': (menuOption === 'List View') ? 1 : 0.5}"
+            (click)="onClickList()">
+      <mat-icon>list</mat-icon>
+      List View
+    </button>
+    <button mat-button
+            [ngStyle]="{'opacity': 0.5}"
+            (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+      New Customer
+    </button>
+    <mat-form-field>
+      <mat-label>Search Customer</mat-label>
+      <input matInput (keyup)="searchCustomer($event)">
+    </mat-form-field>
+
+    <div class="cards" *ngIf="menuOption === 'Card View'">
+      <app-customer-card class="card" *ngFor="let customer of relevantCustomers"
+                         [customer]="customer"></app-customer-card>
+    </div>
+
+    <div class="list" *ngIf="menuOption === 'List View'">
+      <app-list-view [customers]="relevantCustomers"></app-list-view>
+    </div>
+
+  </div>
+</div>

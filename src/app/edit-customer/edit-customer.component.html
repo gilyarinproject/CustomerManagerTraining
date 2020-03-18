@@ -1,0 +1,34 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+  <label>First Name</label>
+  <input
+         placeholder={{customer.firstName}}
+         name="firstName"
+         ngModel>
+  <label>Last Name</label>
+  <input
+         placeholder={{customer.lastName}}
+         name="lastName"
+         ngModel>
+  <label>City</label>
+  <input
+         placeholder={{customer.address.city}}
+         name="city"
+         ngModel>
+  <mat-form-field>
+    <label class="select-country">Country</label>
+    <mat-select name="country" [(value)]="selected">
+      <mat-option *ngFor="let country of countries"
+                  [value]="country">
+        {{country}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="buttons">
+    <button mat-raised-button color="warn"
+          (click)="onDelete()">Delete</button>
+    <button mat-raised-button class="cancel-button">Cancel</button>
+    <button mat-raised-button class="green-button"
+          [disabled]="!form.valid"
+          type="submit">Update</button>
+  </div>
+</form>

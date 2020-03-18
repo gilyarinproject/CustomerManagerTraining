@@ -1,0 +1,31 @@
+<div class="form-container">
+  <mat-icon>lock</mat-icon>
+  <span class="title">Login</span>
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput
+             class="form-control"
+             name="email"
+             type="email"
+             required
+             email
+             [(ngModel)]="email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput
+             class="form-control"
+             name="password"
+             type="password"
+             required
+             [(ngModel)]="password">
+    </mat-form-field>
+    <button mat-raised-button
+            type="submit"
+            class="green-button"
+            [disabled]="!form.form.valid">
+      Login
+    </button>
+  </form>
+</div>

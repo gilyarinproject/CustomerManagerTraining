@@ -1,0 +1,12 @@
+div.orders-wrapper {
+  width: 30%;
+  margin-top: 2%;
+}
+
+.right {
+  float: right;
+}
+
+hr {
+  border-style: solid;
+}

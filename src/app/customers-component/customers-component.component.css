@@ -1,0 +1,25 @@
+.wrapper-container {
+  display: flex;
+  margin-left: 8%;
+  flex-direction: column;
+}
+
+.title {
+  margin-top: 1%;
+  margin-bottom: 2%;
+  font-size: medium;
+}
+
+mat-form-field {
+  margin-left: 48%;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin-right: 2%;
+  margin-top: 2%;
+}

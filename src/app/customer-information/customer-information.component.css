@@ -1,0 +1,16 @@
+.wrapper-container {
+  display: flex;
+  margin-left: 8%;
+  flex-direction: column;
+}
+
+.title {
+  margin-top: 1%;
+  margin-bottom: 2%;
+  font-size: medium;
+}
+
+.orders {
+  margin-top: 2%;
+  margin-left: 1%;
+}

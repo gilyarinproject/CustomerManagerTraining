@@ -1,0 +1,16 @@
+<div class="card-wrapper">
+  <div class="card-top">
+    <span>{{customer | fullName}}</span>
+    <a class="pen" routerLink="/customerInformation/{{customer.id}}/edit">
+      <mat-icon>edit</mat-icon>
+    </a>
+  </div>
+  <div class="card-bottom">
+    <img src="{{customer | genderPhoto}}">
+    <div class="right-part-card">
+      <div class="address">{{customer | address}}</div>
+      <a routerLink="/customerInformation/{{customer.id}}/orders">
+        View Orders</a>
+    </div>
+  </div>
+</div>

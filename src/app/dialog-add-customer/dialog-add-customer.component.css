@@ -1,0 +1,32 @@
+/*mat-form-field {*/
+/*  text-align: center;*/
+/*}*/
+
+/*mat-dialog-content {*/
+/*  text-align: center;*/
+/*}*/
+
+.mat-dialog-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+mat-radio-button {
+  margin-left: 9px;;
+}
+
+.mat-dialog-title {
+  text-align: center;
+}
+
+mat-radio-group {
+  margin-top: 3%;
+}
+
+.green-button {
+  color: white;
+  background-color: #96d196;
+}

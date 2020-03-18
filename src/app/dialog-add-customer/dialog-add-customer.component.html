@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput
+               name="firstName"
+               ngModel
+               required>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput
+               name="lastName"
+               ngModel
+               required>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput
+               name="city"
+               ngModel
+               required>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Country</mat-label>
+        <mat-select matInput
+                    name="country"
+                    ngModel
+                    required>
+          <mat-option *ngFor="let country of countries"
+                      [value]="country">
+            {{country}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <p>Gender</p>
+      <mat-radio-group name="gender" ngModel required aria-label="Select a gender">
+        <mat-radio-button value="Male">Male </mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button class="green-button"
+              [disabled]="!form.valid"
+              type="submit">Add Customer</button>
+    </div>
+  </form>
+</div>
+
+<!--<mat-label>Country</mat-label>-->
+<!--<input matInput-->
+<!--       name="country"-->
+<!--       ngModel-->
+<!--       required>-->
