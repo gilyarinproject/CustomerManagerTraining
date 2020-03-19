@@ -28,13 +28,10 @@ export class CustomersServiceService {
     return null;
   }
 
-  editCustomer(customerChanged: Customer) {
-    console.log(customerChanged.lastName);
+  editCustomer(customerToChange: Customer) {
+    customers.splice(customerToChange.id - 1, 1, customerToChange);
     for (let customer of customers) {
-      if (customer.id == customerChanged.id) {
-        customer = customerChanged
-      }
+      console.log(customer.lastName);
     }
-    console.log('in sevice in edit function' + customers[0].lastName);
   }
 }

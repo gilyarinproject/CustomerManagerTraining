@@ -48,22 +48,9 @@ export class EditCustomerComponent implements OnInit {
     console.log(clonedCustomer.lastName + ' in edit customer component');
     console.log(clonedCustomer.address.city + ' in edit customer component');
     console.log(clonedCustomer.address.country + ' in edit customer component');
-    this.customersService.editCustomer(this.customer);
+    this.customersService.editCustomer(clonedCustomer);
   }
 
-  cloneCustomer(customer: Customer) {
-    let newCustomer: Customer = {
-      firstName: customer.firstName,
-      lastName: customer.lastName,
-      address: {
-        city: customer.address.city,
-        country: customer.address.country
-      },
-      gender: customer.gender,
-      id: customer.id
-    };
-    return newCustomer;
-  }
 
   createCustomerWithChanges(details: any): Customer {
     let firstNameNew: string;
