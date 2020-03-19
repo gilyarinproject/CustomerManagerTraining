@@ -32,6 +32,7 @@ import { OrderTotalPipe } from './order-total.pipe';
 import { AddressPipe } from './address.pipe';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { OrdersComponentComponent } from './orders-component/orders-component.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { OrdersComponentComponent } from './orders-component/orders-component.co
     OrderTotalPipe,
     AddressPipe,
     CustomerDetailsComponent,
-    OrdersComponentComponent
+    OrdersComponentComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

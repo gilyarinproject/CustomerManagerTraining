@@ -10,3 +10,9 @@ img {
 a {
   text-decoration: none;
 }
+
+th {
+  font-weight: bold;
+  font-size: medium;
+  color: black;
+}

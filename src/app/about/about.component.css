@@ -1,0 +1,23 @@
+div.details-wrapper {
+  width: 33%;
+  margin-top: 2%;
+  margin-left: 6%;
+}
+
+div.right {
+  margin-left: 10%;
+}
+
+div.left {
+  width: 30%;
+}
+
+mat-icon {
+  margin-top: 1%;
+  margin-left: 5%;
+}
+
+div.one-line {
+  margin-bottom: 3%;
+  display: flex;
+}

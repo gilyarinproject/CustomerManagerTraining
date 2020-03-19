@@ -6,12 +6,14 @@ import {CustomerInformationComponent} from "./customer-information/customer-info
 import {LoginFormComponent} from "./login-form/login-form.component";
 import {CustomerOrdersComponent} from "./customer-orders/customer-orders.component";
 import {OrdersComponentComponent} from "./orders-component/orders-component.component";
+import {AboutComponent} from "./about/about.component";
 
 const routes: Routes = [
   {path: 'customers', component: CustomersComponentComponent},
   {path: 'customerInformation/:id/:option', component: CustomerInformationComponent},
   {path: 'login', component: LoginFormComponent},
   {path: 'orders', component: OrdersComponentComponent},
+  {path: 'about', component: AboutComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

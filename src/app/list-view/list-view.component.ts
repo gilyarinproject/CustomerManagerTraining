@@ -11,7 +11,6 @@ export class ListViewComponent implements OnInit {
   @Input() customers: Customer[];
   displayedColumns: string[] =
     ['genderImage', 'firstname', 'lastname', 'city', 'country', 'orderTotal', 'viewOrders'];
-  // dataSource = ELEMENT_DATA;
 
   constructor() { }
 

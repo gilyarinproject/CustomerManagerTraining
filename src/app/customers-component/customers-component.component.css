@@ -23,3 +23,11 @@ mat-form-field {
   margin-right: 2%;
   margin-top: 2%;
 }
+
+.bold-option {
+  font-weight: bold
+}
+
+.low-opacity-option {
+  opacity: 0.5;
+}

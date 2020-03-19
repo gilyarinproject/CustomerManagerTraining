@@ -5,13 +5,13 @@
 
   <div class="menu">
     <button mat-button
-            [ngStyle]="{'opacity': (menuOption === 'Card View') ? 1 : 0.5}"
+            [ngClass]="menuOption === 'Card View' ? 'bold-option' : 'low-opacity-option'"
             (click)="onClickCard()">
       <mat-icon>view_module</mat-icon>
       Card View
     </button>
     <button mat-button
-            [ngStyle]="{'opacity': (menuOption === 'List View') ? 1 : 0.5}"
+            [ngClass]="menuOption === 'List View' ? 'bold-option' : 'low-opacity-option'"
             (click)="onClickList()">
       <mat-icon>list</mat-icon>
       List View

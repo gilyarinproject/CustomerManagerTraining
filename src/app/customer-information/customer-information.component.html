@@ -5,19 +5,19 @@
 
   <div class="menu">
     <button mat-button
-            [ngStyle]="{'opacity': (menuOption === 'Customer Details') ? 1 : 0.5}"
+            [ngClass]="menuOption === 'Customer Details' ? 'bold-option' : 'low-opacity-option'"
             (click)="onClickDetails()">
       <mat-icon>list</mat-icon>
       Customer Details
     </button>
     <button mat-button
-            [ngStyle]="{'opacity': (menuOption === 'Customer Orders') ? 1 : 0.5}"
+            [ngClass]="menuOption === 'Customer Orders' ? 'bold-option' : 'low-opacity-option'"
             (click)="onClickOrders()">
       <mat-icon>local_offer</mat-icon>
       Customer Orders
     </button>
     <button mat-button
-            [ngStyle]="{'opacity': (menuOption === 'Edit Customer') ? 1 : 0.5}"
+            [ngClass]="menuOption === 'Edit Customer' ? 'bold-option' : 'low-opacity-option'"
             (click)="onClickEdit()">
       <mat-icon>edit</mat-icon>
       Edit Customer

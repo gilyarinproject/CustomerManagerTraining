@@ -1,0 +1,10 @@
+<mat-icon>information</mat-icon> About
+
+<div class="details-wrapper">
+  <div *ngFor="let detail of details">
+    <div class="one-line">
+      <div class="left">{{detail.fieldName}}</div>
+      <div [innerHTML]="detail.value" class="right">{{detail.value}}</div>
+    </div>
+  </div>
+</div>

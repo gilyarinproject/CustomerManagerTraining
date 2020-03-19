@@ -14,3 +14,11 @@
   margin-top: 2%;
   margin-left: 1%;
 }
+
+.bold-option {
+  font-weight: bold
+}
+
+.low-opacity-option {
+  opacity: 0.5;
+}
