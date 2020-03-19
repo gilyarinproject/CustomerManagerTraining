@@ -1,0 +1,7 @@
+<div class="wrapper-all-orders">
+  <mat-icon>folder_shared</mat-icon><span> Orders</span>
+  <div *ngFor="let customer of customersWithOrders">
+    <div class="name">{{customer | fullName}}</div>
+    <app-customer-orders [customer]="customer"></app-customer-orders>
+  </div>
+</div>

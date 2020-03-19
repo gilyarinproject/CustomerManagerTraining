@@ -31,6 +31,7 @@ import { FullNamePipe } from './full-name.pipe';
 import { OrderTotalPipe } from './order-total.pipe';
 import { AddressPipe } from './address.pipe';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import { OrdersComponentComponent } from './orders-component/orders-component.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
     FullNamePipe,
     OrderTotalPipe,
     AddressPipe,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    OrdersComponentComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogAddCustomerComponent} from "../dialog-add-customer/dialog-add-customer.component";
 import {Customer, CustomersMenuOptions} from '../interfaces';
 import {CustomersServiceService} from "../customers-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-customers-component',
@@ -17,7 +18,8 @@ export class CustomersComponentComponent implements OnInit{
   menuOption: CustomersMenuOptions;
   relevantCustomers: Customer[];
 
-  constructor(public dialog: MatDialog, private customersService: CustomersServiceService) {
+  constructor(public dialog: MatDialog,
+              private customersService: CustomersServiceService) {
     this.title = 'Add Customer';
   }
 
