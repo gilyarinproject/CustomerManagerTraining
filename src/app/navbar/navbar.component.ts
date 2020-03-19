@@ -12,8 +12,7 @@ export class NavbarComponent implements OnInit {
 
   peopleImage: string;
   loginLogout: LoginLogout;
-  subject: Subject<string>;
-  subscription: Subscription;
+  subscription;
 
   constructor(private loginComponent: LoginFormComponent) {
     // this.subject = new Subject<LoginLogout>();
@@ -24,17 +23,20 @@ export class NavbarComponent implements OnInit {
     // this.subject.next(LoginLogout.Login);
     // console.log(this.loginLogout);
 
-    this.subscription = this.loginComponent.getSubject().subscribe(change => {
-      console.log(change);
-      if (change) {
+
+    this.subscription = this.loginComponent.getSubject().subscribe(loginLogoutDecision => {
+      console.log(loginLogoutDecision);
+      console.log(this.loginLogout);
+      if (loginLogoutDecision !== this.loginLogout && this.loginLogout !== undefined) {
         this.changeLoginLogout();
       }
-    })
+    });
   }
 
   ngOnInit(): void {
     this.peopleImage = './assets/images/people.png';
     this.loginLogout = LoginLogout.Login;
+    console.log(this.loginLogout);
   }
 
   ngOnDestroy() {
@@ -42,6 +44,7 @@ export class NavbarComponent implements OnInit {
   }
 
   changeLoginLogout() {
+    console.log('in changeLoginLogout()');
     if(this.loginLogout === LoginLogout.Logout) {
       this.loginLogout = LoginLogout.Login
     }

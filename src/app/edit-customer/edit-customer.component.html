@@ -26,9 +26,9 @@
   <div class="buttons">
     <button mat-raised-button color="warn"
           (click)="onDelete()">Delete</button>
-    <button mat-raised-button class="cancel-button">Cancel</button>
+    <button mat-raised-button class="cancel-button"
+          (click)="onCancel()">Cancel</button>
     <button mat-raised-button class="green-button"
-          [disabled]="!form.valid"
           type="submit">Update</button>
   </div>
 </form>

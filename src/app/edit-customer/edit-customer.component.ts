@@ -16,6 +16,11 @@ export class EditCustomerComponent implements OnInit {
   countries: string[];
   selected: string;
 
+  firstNameNew: string;
+  lastNameNew: string;
+  cityNew: string;
+  countryNew: string;
+
   constructor(private customersService: CustomersServiceService) { }
 
   ngOnInit(): void {
@@ -24,22 +29,25 @@ export class EditCustomerComponent implements OnInit {
   }
 
   onSubmit(details: any) {
-    console.log(details.lastName);
-    let clonedCustomer = {...this.customer};
-    console.log(clonedCustomer + ' cloned');
-    if (!details.firstName) {
-      clonedCustomer.firstName = details.firstName;
-    }
-    if (!details.lastName) {
-      clonedCustomer.lastName = details.lastName;
-    }
-    if (!details.city) {
-      clonedCustomer.address.city = details.city;
-    }
-    if (!details.country) {
-      clonedCustomer.address.country = details.country;
-    }
+    // let clonedCustomer = {...this.customer};
+    // console.log(clonedCustomer + ' cloned');
+    // if (!details.firstName && details.firstName !== '') {
+    //   this.firstNameNew = details.firstName;
+    // }
+    // if (!details.lastName && details.lastName !== '') {
+    //   this.lastNameNew = details.lastName;
+    // }
+    // if (!details.city && details.city !== '') {
+    //   this.cityNew = details.city;
+    // }
+    // if (!details.country && details.country !== '') {
+    //   clonedCustomer.address.country = details.country;
+    // }
+    let clonedCustomer = this.createCustomerWithChanges(details);
+    console.log(clonedCustomer.firstName + ' in edit customer component');
     console.log(clonedCustomer.lastName + ' in edit customer component');
+    console.log(clonedCustomer.address.city + ' in edit customer component');
+    console.log(clonedCustomer.address.country + ' in edit customer component');
     this.customersService.editCustomer(this.customer);
   }
 
@@ -57,8 +65,60 @@ export class EditCustomerComponent implements OnInit {
     return newCustomer;
   }
 
+  createCustomerWithChanges(details: any): Customer {
+    let firstNameNew: string;
+    let lastNameNew: string;
+    let cityNew: string;
+    let countryNew: string;
+
+    if (details.firstName !== '') {
+      firstNameNew = details.firstName;
+    }
+    else {
+      firstNameNew = this.customer.firstName;
+    }
+
+    if (details.lastName !== '') {
+      lastNameNew = details.lastName;
+    }
+    else {
+      lastNameNew = this.customer.lastName;
+    }
+
+    if (details.city !== '') {
+      cityNew = details.city;
+    }
+    else {
+      cityNew = this.customer.address.city;
+    }
+
+    if (details.country !== '') {
+      countryNew = details.country;
+    }
+    else {
+      countryNew = this.customer.address.country;
+    }
+
+    let newCustomer: Customer = {
+      firstName: firstNameNew,
+      lastName: lastNameNew,
+      address: {
+        city: cityNew,
+        country: countryNew
+      },
+      gender: this.customer.gender,
+      id: this.customer.id,
+      orders: this.customer.orders
+    };
+
+    return newCustomer;
+  }
 
   onDelete() {
+
+  }
+
+  onCancel() {
 
   }
 }
