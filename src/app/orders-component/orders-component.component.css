@@ -1,14 +1,19 @@
 div.wrapper-all-orders {
-  margin-top: 2%;
-  margin-left: 5%;
+  margin-top: 1%;
+  margin-left: 6%;
 }
 
 span {
   font-size: large;
-  margin-bottom: 3%;
+  margin-left: 0.3%;
 }
 
 div.name {
   margin-top: 2%;
   font-size: large;
+}
+
+div.title {
+  display: flex;
+  align-items: center;
 }

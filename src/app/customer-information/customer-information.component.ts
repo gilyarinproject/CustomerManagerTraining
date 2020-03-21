@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer, CustomerInformationMenuOptions} from "../interfaces";
 import {CustomersServiceService} from "../customers-service.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-customer-information',
@@ -18,7 +18,8 @@ export class CustomerInformationComponent implements OnInit {
 
   constructor(
     private customersService: CustomersServiceService,
-    private  route: ActivatedRoute
+    private  route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -52,14 +53,20 @@ export class CustomerInformationComponent implements OnInit {
 
   onClickDetails() {
     this.menuOption = CustomerInformationMenuOptions.Details;
+    this.router.navigate(['/customerInformation/' + this.customer.id + '/details']);
+
   }
 
   onClickOrders() {
     this.menuOption = CustomerInformationMenuOptions.Orders;
+    this.router.navigate(['/customerInformation/' + this.customer.id + '/orders']);
+
   }
 
   onClickEdit() {
     this.menuOption = CustomerInformationMenuOptions.Edit;
+    this.router.navigate(['/customerInformation/' + this.customer.id + '/edit']);
+
   }
 
 }

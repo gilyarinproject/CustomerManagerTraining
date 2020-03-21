@@ -3,7 +3,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogAddCustomerComponent} from "../dialog-add-customer/dialog-add-customer.component";
 import {Customer, CustomersMenuOptions} from '../interfaces';
 import {CustomersServiceService} from "../customers-service.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-customers-component',
@@ -66,12 +65,9 @@ export class CustomersComponentComponent implements OnInit{
   onClickCard() {
     this.menuOption = CustomersMenuOptions.CardView;
   }
+
   onClickList() {
     this.menuOption = CustomersMenuOptions.ListView;
-  }
-
-  onClickNewCustomer() {
-
   }
 
   searchCustomer(event: any) {

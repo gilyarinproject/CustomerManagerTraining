@@ -1,7 +1,6 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Subject, Subscription} from "rxjs";
+import {Component, OnInit } from '@angular/core';
 import {LoginLogout} from "../interfaces";
-import {LoginFormComponent} from "../login-form/login-form.component";
+import {LoginLogoutService} from "../login-logout.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,44 +11,18 @@ export class NavbarComponent implements OnInit {
 
   peopleImage: string;
   loginLogout: LoginLogout;
-  subscription;
 
-  constructor(private loginComponent: LoginFormComponent) {
-    // this.subject = new Subject<LoginLogout>();
-    // this.subject.subscribe( {
-    //   next: (val) => { this.loginLogout = val;
-    //     console.log(val);}
-    // });
-    // this.subject.next(LoginLogout.Login);
-    // console.log(this.loginLogout);
-
-
-    this.subscription = this.loginComponent.getSubject().subscribe(loginLogoutDecision => {
-      console.log(loginLogoutDecision);
-      console.log(this.loginLogout);
-      if (loginLogoutDecision !== this.loginLogout && this.loginLogout !== undefined) {
-        this.changeLoginLogout();
-      }
-    });
-  }
+  constructor(private loginLogoutService: LoginLogoutService) {}
 
   ngOnInit(): void {
     this.peopleImage = './assets/images/people.png';
-    this.loginLogout = LoginLogout.Login;
-    console.log(this.loginLogout);
+    this.loginLogoutService.loginLogout.subscribe(value => {
+      this.loginLogout = value
+    });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 
-  changeLoginLogout() {
-    console.log('in changeLoginLogout()');
-    if(this.loginLogout === LoginLogout.Logout) {
-      this.loginLogout = LoginLogout.Login
-    }
-    else {
-      this.loginLogout = LoginLogout.Logout
-    }
+  loginLogoutClicked() {
+    this.loginLogoutService.changeState('just click');
   }
 }

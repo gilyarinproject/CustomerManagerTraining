@@ -1,3 +1,14 @@
+div.title {
+  display: flex;
+  align-items: center;
+  margin-top: 1%;
+}
+
+span {
+  font-size: medium;
+  margin-left: 0.3%;
+}
+
 div.details-wrapper {
   width: 33%;
   margin-top: 2%;
@@ -13,11 +24,13 @@ div.left {
 }
 
 mat-icon {
-  margin-top: 1%;
   margin-left: 5%;
 }
 
 div.one-line {
   margin-bottom: 3%;
   display: flex;
+}
+
+a {
 }

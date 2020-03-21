@@ -1,6 +1,7 @@
 <div class="wrapper-container">
   <div class="title">
-    <mat-icon>person</mat-icon> {{title}}
+    <mat-icon>person</mat-icon>
+    <span> {{title}}</span>
   </div>
 
   <div class="menu">
@@ -25,7 +26,8 @@
   </div>
 
   <div [ngSwitch]="menuOption" class="content-info">
-    <app-edit-customer *ngSwitchCase="'Edit Customer'" [customer]="customer"></app-edit-customer>
+    <app-edit-customer *ngSwitchCase="'Edit Customer'" [customer]="customer"
+            (menuOptionChange)="onClickDetails()"></app-edit-customer>
     <div *ngSwitchCase="'Customer Orders'" class="orders">
       <span>Orders for {{customer | fullName}}</span>
       <app-customer-orders [customer]="customer"></app-customer-orders>

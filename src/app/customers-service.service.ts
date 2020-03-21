@@ -34,4 +34,8 @@ export class CustomersServiceService {
       console.log(customer.lastName);
     }
   }
+
+  deleteCustomer(id: number) {
+    customers.splice(id - 1, 1);
+  }
 }

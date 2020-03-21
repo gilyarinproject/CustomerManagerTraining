@@ -1,8 +1,6 @@
 import {Component, Injectable, OnInit} from '@angular/core';
-import {FormGroup, FormsModule, NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
-import {LoginLogout} from "../interfaces";
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {LoginLogoutService} from "../login-logout.service";
 
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -14,9 +12,9 @@ export class LoginFormComponent implements OnInit {
 
   email: string;
   password: string;
-  subject = new BehaviorSubject('Login');
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private loginLogoutService: LoginLogoutService) { }
 
   ngOnInit(): void {
   }
@@ -24,21 +22,10 @@ export class LoginFormComponent implements OnInit {
   onSubmit() {
     if (this.email.length >=6 && this.password.length >=6) {
       this.router.navigate(['/customers']);
-      this.subject.next('Logout');
-      console.log(this.subject);
-      console.log('in on submit subject');
+      this.loginLogoutService.changeState('submit');
     }
     else {
-      alert('email or password must conatain at least 6 characters!');
-      this.subject.next('');
+      alert('email and password must contain at least 6 characters!');
     }
-    console.log('submitted');
   }
-
-  getSubject(): Observable<any> {
-    console.log('in getSubject()');
-    console.log(this.subject.asObservable());
-    return this.subject.asObservable();
-  }
-
 }

@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Customer} from "../interfaces";
 import {CustomersServiceService} from "../customers-service.service";
 import {count} from "rxjs/operators";
 import {conditionallyCreateMapObjectLiteral} from "@angular/compiler/src/render3/view/util";
 import { COUNTRIES } from '../interfaces';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-edit-customer',
@@ -13,6 +14,8 @@ import { COUNTRIES } from '../interfaces';
 export class EditCustomerComponent implements OnInit {
 
   @Input() customer: Customer;
+  @Output() menuOptionChange = new EventEmitter();
+
   countries: string[];
   selected: string;
 
@@ -21,7 +24,8 @@ export class EditCustomerComponent implements OnInit {
   cityNew: string;
   countryNew: string;
 
-  constructor(private customersService: CustomersServiceService) { }
+  constructor(private customersService: CustomersServiceService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.countries = COUNTRIES;
@@ -43,12 +47,18 @@ export class EditCustomerComponent implements OnInit {
     // if (!details.country && details.country !== '') {
     //   clonedCustomer.address.country = details.country;
     // }
+
+    console.log(details);
+    console.log(this.selected);
+
     let clonedCustomer = this.createCustomerWithChanges(details);
     console.log(clonedCustomer.firstName + ' in edit customer component');
     console.log(clonedCustomer.lastName + ' in edit customer component');
     console.log(clonedCustomer.address.city + ' in edit customer component');
     console.log(clonedCustomer.address.country + ' in edit customer component');
     this.customersService.editCustomer(clonedCustomer);
+    alert(this.customer.firstName + ' ' + this.customer.lastName + ' details updated');
+    this.router.navigate(['/customers']);
   }
 
 
@@ -79,8 +89,8 @@ export class EditCustomerComponent implements OnInit {
       cityNew = this.customer.address.city;
     }
 
-    if (details.country !== '') {
-      countryNew = details.country;
+    if (this.selected !== this.customer.address.country) {
+      countryNew = this.selected;
     }
     else {
       countryNew = this.customer.address.country;
@@ -102,10 +112,13 @@ export class EditCustomerComponent implements OnInit {
   }
 
   onDelete() {
-
+    this.customersService.deleteCustomer(this.customer.id);
+    alert(this.customer.firstName + ' ' + this.customer.lastName + ' deleted');
+    this.router.navigate(['/customers']);
   }
 
   onCancel() {
-
+    this.menuOptionChange.emit();
+    this.router.navigate(['/customerInformation/' + this.customer.id + '/details']);
   }
 }
