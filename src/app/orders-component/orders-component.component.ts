@@ -20,11 +20,7 @@ export class OrdersComponentComponent implements OnInit {
   }
 
   getCustomersWithOrders() {
-    for (let customer of this.customers) {
-      if (customer.orders) {
-        this.customersWithOrders.push(customer);
-      }
-    }
+    this.customersWithOrders = this.customers.filter(customer => customer.orders);
   }
 
 }

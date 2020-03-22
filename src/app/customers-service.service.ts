@@ -16,23 +16,15 @@ export class CustomersServiceService {
   addCustomer(newCustomer: Customer) {
     newCustomer.id = customers.length + 1;
     customers.push(newCustomer);
-    console.log(customers);
+    alert(newCustomer.firstName + ' ' + newCustomer.lastName + ' added to customers!');
   }
 
-  getCustomer(id: number): Customer | null {
-    for (let customer of customers) {
-      if (customer.id == id) {
-        return customer;
-      }
-    }
-    return null;
+  getCustomer(id: number): Customer | undefined {
+    return customers.find(customer => customer.id === id);
   }
 
   editCustomer(customerToChange: Customer) {
     customers.splice(customerToChange.id - 1, 1, customerToChange);
-    for (let customer of customers) {
-      console.log(customer.lastName);
-    }
   }
 
   deleteCustomer(id: number) {

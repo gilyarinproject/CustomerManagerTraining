@@ -15,11 +15,9 @@ export class LoginLogoutService {
     if (this.loginSubject.value === LoginLogout.Login &&
         cameFrom !== 'just click') {
       this.loginSubject.next(LoginLogout.Logout);
-      console.log('in loginService changeState()');
     }
     else {
       this.loginSubject.next(LoginLogout.Login);
-      console.log('in loginService changeState()');
     }
   }
 }

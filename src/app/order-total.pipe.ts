@@ -7,11 +7,11 @@ import {Customer} from "./interfaces";
 export class OrderTotalPipe implements PipeTransform {
 
   transform(value: Customer): number {
-    let sum = 0;
+    let sum: number;
     if (value.orders) {
-      for (let order of value.orders) {
-        sum += order.itemPrice;
-      }
+      sum = value.orders.reduce(
+        ( acc, cur ) => acc + cur.itemPrice, 0)
     }
-    return Math.round(sum * 100) / 100;  }
+    return Math.round(sum * 100) / 100;
+  }
 }

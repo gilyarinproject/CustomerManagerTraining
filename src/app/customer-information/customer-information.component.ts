@@ -10,8 +10,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CustomerInformationComponent implements OnInit {
 
-  // @Input() customer: Customer;
-
   customer: Customer;
   title: string;
   menuOption: CustomerInformationMenuOptions;
@@ -66,7 +64,6 @@ export class CustomerInformationComponent implements OnInit {
   onClickEdit() {
     this.menuOption = CustomerInformationMenuOptions.Edit;
     this.router.navigate(['/customerInformation/' + this.customer.id + '/edit']);
-
   }
 
 }

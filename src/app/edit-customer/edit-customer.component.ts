@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Customer} from "../interfaces";
 import {CustomersServiceService} from "../customers-service.service";
-import {count} from "rxjs/operators";
-import {conditionallyCreateMapObjectLiteral} from "@angular/compiler/src/render3/view/util";
 import { COUNTRIES } from '../interfaces';
 import {Router} from "@angular/router";
 
@@ -19,11 +17,6 @@ export class EditCustomerComponent implements OnInit {
   countries: string[];
   selected: string;
 
-  firstNameNew: string;
-  lastNameNew: string;
-  cityNew: string;
-  countryNew: string;
-
   constructor(private customersService: CustomersServiceService,
               private router: Router) { }
 
@@ -33,34 +26,11 @@ export class EditCustomerComponent implements OnInit {
   }
 
   onSubmit(details: any) {
-    // let clonedCustomer = {...this.customer};
-    // console.log(clonedCustomer + ' cloned');
-    // if (!details.firstName && details.firstName !== '') {
-    //   this.firstNameNew = details.firstName;
-    // }
-    // if (!details.lastName && details.lastName !== '') {
-    //   this.lastNameNew = details.lastName;
-    // }
-    // if (!details.city && details.city !== '') {
-    //   this.cityNew = details.city;
-    // }
-    // if (!details.country && details.country !== '') {
-    //   clonedCustomer.address.country = details.country;
-    // }
-
-    console.log(details);
-    console.log(this.selected);
-
-    let clonedCustomer = this.createCustomerWithChanges(details);
-    console.log(clonedCustomer.firstName + ' in edit customer component');
-    console.log(clonedCustomer.lastName + ' in edit customer component');
-    console.log(clonedCustomer.address.city + ' in edit customer component');
-    console.log(clonedCustomer.address.country + ' in edit customer component');
-    this.customersService.editCustomer(clonedCustomer);
+    let changedCustomerToUpdate = this.createCustomerWithChanges(details);
+    this.customersService.editCustomer(changedCustomerToUpdate);
     alert(this.customer.firstName + ' ' + this.customer.lastName + ' details updated');
     this.router.navigate(['/customers']);
   }
-
 
   createCustomerWithChanges(details: any): Customer {
     let firstNameNew: string;

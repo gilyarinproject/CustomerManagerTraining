@@ -28,9 +28,6 @@ export class DialogAddCustomerComponent implements OnInit {
   }
 
   onSubmit(form: any): void {
-    console.log('in submit function');
-    console.log(form);
-    console.log(form.value);
     this.dialogRef.close(form.value);
   }
 }

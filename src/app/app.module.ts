@@ -12,7 +12,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
-import {ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { FormsModule } from "@angular/forms";
 import { CustomerInformationComponent } from './customer-information/customer-information.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
@@ -23,7 +23,7 @@ import { GenderPhotoPipe } from './gender-photo.pipe';
 import { MatTableModule } from "@angular/material/table";
 import { ListViewComponent } from './list-view/list-view.component';
 import { MatSelectModule } from "@angular/material/select";
-import {CustomersServiceService} from "./customers-service.service";
+import { CustomersServiceService } from "./customers-service.service";
 import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
 import { MatListModule } from "@angular/material/list";
 import { MatDividerModule } from "@angular/material/divider";
@@ -33,6 +33,7 @@ import { AddressPipe } from './address.pipe';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { OrdersComponentComponent } from './orders-component/orders-component.component';
 import { AboutComponent } from './about/about.component';
+import { PricePipe } from './price.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AboutComponent } from './about/about.component';
     AddressPipe,
     CustomerDetailsComponent,
     OrdersComponentComponent,
-    AboutComponent
+    AboutComponent,
+    PricePipe
   ],
   imports: [
     BrowserModule,

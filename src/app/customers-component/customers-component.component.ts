@@ -37,8 +37,6 @@ export class CustomersComponentComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        console.log('dialog was closed');
-        console.log(result);
         this.newCustomer = {
           firstName: result.firstName,
           lastName: result.lastName,
@@ -53,7 +51,6 @@ export class CustomersComponentComponent implements OnInit{
     });
   }
 
-  //maybe use observable later as in tour of heroes
   getCustomers(): void {
     this.customers = this.customersService.getCustomers();
   }
@@ -75,13 +72,9 @@ export class CustomersComponentComponent implements OnInit{
       this.relevantCustomers = this.customers;
     }
     else {
-      this.relevantCustomers = [];
-      for (let customer of this.customers) {
-        if (customer.firstName.toUpperCase().includes(event.target.value.toUpperCase()) ||
-          customer.lastName.toUpperCase().includes(event.target.value.toUpperCase())) {
-          this.relevantCustomers.push(customer);
-        }
-      }
+      this.relevantCustomers = this.customers.filter(customer =>
+          customer.firstName.toUpperCase().includes(event.target.value.toUpperCase())  ||
+          customer.lastName.toUpperCase().includes(event.target.value.toUpperCase()));
     }
   }
 
