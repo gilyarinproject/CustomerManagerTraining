@@ -1,6 +1,5 @@
 import {Component, OnInit } from '@angular/core';
-import {LoginLogout} from "../interfaces";
-import {LoginLogoutService} from "../login-logout.service";
+import {LoginLogoutService} from "../services/login-logout.service";
 
 @Component({
   selector: 'app-navbar',
@@ -9,15 +8,13 @@ import {LoginLogoutService} from "../login-logout.service";
 })
 export class NavbarComponent implements OnInit {
 
-  peopleImage: string;
-  loginLogout: LoginLogout;
+  isUserLoggedIn: boolean;
 
   constructor(private loginLogoutService: LoginLogoutService) {}
 
   ngOnInit(): void {
-    this.peopleImage = './assets/images/people.png';
     this.loginLogoutService.loginLogout.subscribe(value => {
-      this.loginLogout = value
+      this.isUserLoggedIn = value;
     });
   }
 

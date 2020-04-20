@@ -34,3 +34,8 @@ mat-form-field {
 .low-opacity-option {
   opacity: 0.5;
 }
+
+mat-spinner {
+  margin-left: 40%;
+  margin-top: 10%;
+}

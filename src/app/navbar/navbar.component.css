@@ -14,6 +14,14 @@ span {
   text-align: center;
 }
 
+.logo:focus {
+  outline: 0;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
 button {
   background-color: #027ff4;
   color: white;

@@ -10,13 +10,9 @@ span {
 }
 
 div.details-wrapper {
-  width: 33%;
+  width: 55%;
   margin-top: 2%;
   margin-left: 6%;
-}
-
-div.right {
-  margin-left: 10%;
 }
 
 div.left {

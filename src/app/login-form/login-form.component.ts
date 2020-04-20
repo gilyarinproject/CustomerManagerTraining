@@ -1,6 +1,6 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {LoginLogoutService} from "../login-logout.service";
+import {LoginLogoutService} from "../services/login-logout.service";
 
 @Injectable({ providedIn: 'root' })
 @Component({

@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer, CustomerInformationMenuOptions} from "../interfaces";
-import {CustomersServiceService} from "../customers-service.service";
+import {CustomersServiceService} from "../services/customers-service.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Customer} from "../models/Customer";
+import {CustomerInformationMenuOptions} from "../enums/CustomerInformationMenuOptions";
 
 @Component({
   selector: 'app-customer-information',
@@ -13,6 +14,7 @@ export class CustomerInformationComponent implements OnInit {
   customer: Customer;
   title: string;
   menuOption: CustomerInformationMenuOptions;
+  options = CustomerInformationMenuOptions;
 
   constructor(
     private customersService: CustomersServiceService,
@@ -28,7 +30,10 @@ export class CustomerInformationComponent implements OnInit {
 
   getCustomer(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.customer = this.customersService.getCustomer(id);
+    this.customersService.getCustomer(id)
+      .subscribe((res) => {
+      this.customer = res;
+    });
   }
 
   getOption(): void {
@@ -49,19 +54,19 @@ export class CustomerInformationComponent implements OnInit {
     }
   }
 
-  onClickDetails() {
+  onClickDetails(): void {
     this.menuOption = CustomerInformationMenuOptions.Details;
     this.router.navigate(['/customerInformation/' + this.customer.id + '/details']);
 
   }
 
-  onClickOrders() {
+  onClickOrders(): void {
     this.menuOption = CustomerInformationMenuOptions.Orders;
     this.router.navigate(['/customerInformation/' + this.customer.id + '/orders']);
 
   }
 
-  onClickEdit() {
+  onClickEdit(): void {
     this.menuOption = CustomerInformationMenuOptions.Edit;
     this.router.navigate(['/customerInformation/' + this.customer.id + '/edit']);
   }

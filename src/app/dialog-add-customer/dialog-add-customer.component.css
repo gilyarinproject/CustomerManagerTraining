@@ -22,3 +22,7 @@ mat-radio-group {
   color: white;
   background-color: #96d196;
 }
+
+mat-form-field {
+  width: 200px;
+}

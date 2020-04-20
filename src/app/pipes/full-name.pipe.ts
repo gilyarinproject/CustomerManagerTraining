@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Customer} from "./interfaces";
 
 @Pipe({
   name: 'fullName'
 })
 export class FullNamePipe implements PipeTransform {
 
-  transform(value: Customer): string {
+  transform(value: any): string {
     return value.firstName + ' ' + value.lastName;
   }
 

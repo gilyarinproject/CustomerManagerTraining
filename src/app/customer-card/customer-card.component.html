@@ -6,9 +6,9 @@
     </a>
   </div>
   <div class="card-bottom">
-    <img src="{{customer | genderPhoto}}">
+    <img src="{{customer.gender | genderPhoto}}">
     <div class="right-part-card">
-      <div class="address">{{customer | address}}</div>
+      <div class="address">{{customer.address | address}}</div>
       <a routerLink="/customerInformation/{{customer.id}}/orders">
         View Orders</a>
     </div>

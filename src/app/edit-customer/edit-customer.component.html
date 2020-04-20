@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+<form #form="ngForm" (ngSubmit)="onSubmit(form.value)"  *ngIf="customer">
   <label>First Name</label>
   <input
          placeholder={{customer.firstName}}
@@ -16,7 +16,7 @@
          ngModel>
   <mat-form-field>
     <label class="select-country">Country</label>
-    <mat-select name="country" [(value)]="selected">
+    <mat-select name="country" [(value)]="customer.address.country">
       <mat-option *ngFor="let country of countries"
                   [value]="country">
         {{country}}
@@ -25,8 +25,10 @@
   </mat-form-field>
   <div class="buttons">
     <button mat-raised-button color="warn"
+            type="button"
           (click)="onDelete()">Delete</button>
     <button mat-raised-button class="cancel-button"
+            type="button"
           (click)="onCancel()">Cancel</button>
     <button mat-raised-button class="green-button"
           type="submit">Update</button>

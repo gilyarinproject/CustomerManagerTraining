@@ -1,13 +1,13 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Customer, Gender} from "./interfaces";
+import {Gender} from "../enums/Gender";
 
 @Pipe({
   name: 'genderPhoto'
 })
 export class GenderPhotoPipe implements PipeTransform {
 
-  transform(value: Customer): string {
-    if (value.gender === Gender.Male) {
+  transform(gender: Gender): string {
+    if (gender === Gender.Male) {
       return './assets/images/male.png';
     }
     else {

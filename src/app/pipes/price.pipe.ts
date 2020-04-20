@@ -1,11 +1,10 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'price'
+  name: "price"
 })
 export class PricePipe implements PipeTransform {
-
   transform(value: number): string {
-    return '$' + value;
+    return "$" + value;
   }
 }

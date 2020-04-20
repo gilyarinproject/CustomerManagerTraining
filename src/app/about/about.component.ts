@@ -24,3 +24,4 @@ export class AboutComponent implements OnInit {
       {fieldName: 'Questions & Feedback', value: 'gilzilberman123@gmail.com'}]
   }
 }
+

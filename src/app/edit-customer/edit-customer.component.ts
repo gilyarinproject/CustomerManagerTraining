@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Customer} from "../interfaces";
-import {CustomersServiceService} from "../customers-service.service";
-import { COUNTRIES } from '../interfaces';
+import {CustomersServiceService} from "../services/customers-service.service";
 import {Router} from "@angular/router";
+import {Customer} from "../models/Customer";
+import {COUNTRIES} from "../enums/valid-countries";
 
 @Component({
   selector: 'app-edit-customer',
@@ -15,24 +15,28 @@ export class EditCustomerComponent implements OnInit {
   @Output() menuOptionChange = new EventEmitter();
 
   countries: string[];
-  selected: string;
+
 
   constructor(private customersService: CustomersServiceService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.countries = COUNTRIES;
-    this.selected = this.customer.address.country;
   }
 
-  onSubmit(details: any) {
+
+  onSubmit(details: any): void {
     let changedCustomerToUpdate = this.createCustomerWithChanges(details);
-    this.customersService.editCustomer(changedCustomerToUpdate);
-    alert(this.customer.firstName + ' ' + this.customer.lastName + ' details updated');
+    this.customersService.updateCustomer(this.customer.id, changedCustomerToUpdate)
+      .subscribe((res) => {
+        alert(res.firstName + ' ' + res.lastName + ' details updated')
+      })
+      ;
     this.router.navigate(['/customers']);
   }
 
-  createCustomerWithChanges(details: any): Customer {
+  createCustomerWithChanges(details: any): object {
     let firstNameNew: string;
     let lastNameNew: string;
     let cityNew: string;
@@ -59,35 +63,33 @@ export class EditCustomerComponent implements OnInit {
       cityNew = this.customer.address.city;
     }
 
-    if (this.selected !== this.customer.address.country) {
-      countryNew = this.selected;
-    }
-    else {
-      countryNew = this.customer.address.country;
-    }
+    countryNew = this.customer.address.country;
 
-    let newCustomer: Customer = {
+    let newCustomer = {
       firstName: firstNameNew,
       lastName: lastNameNew,
-      address: {
-        city: cityNew,
-        country: countryNew
-      },
-      gender: this.customer.gender,
-      id: this.customer.id,
-      orders: this.customer.orders
+      city: cityNew,
+      country: countryNew
     };
 
     return newCustomer;
   }
 
-  onDelete() {
-    this.customersService.deleteCustomer(this.customer.id);
-    alert(this.customer.firstName + ' ' + this.customer.lastName + ' deleted');
-    this.router.navigate(['/customers']);
+  onDelete(): void {
+    this.customersService.deleteCustomer(this.customer.id)
+      .subscribe(({data}) => {
+      if (data.deleteCustomer === 'deleted') {
+        alert(this.customer.firstName + ' ' + this.customer.lastName + ' deleted');
+        this.router.navigate(['/customers']);
+      }
+      else {
+        alert('deletion failed');
+      }
+    });
+
   }
 
-  onCancel() {
+  onCancel(): void {
     this.menuOptionChange.emit();
     this.router.navigate(['/customerInformation/' + this.customer.id + '/details']);
   }

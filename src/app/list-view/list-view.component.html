@@ -3,7 +3,7 @@
   <ng-container matColumnDef="genderImage">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <img src="{{element | genderPhoto}}"></td>
+      <img src="{{element.gender | genderPhoto}}"></td>
   </ng-container>
 
   <ng-container matColumnDef="firstname">
@@ -31,7 +31,7 @@
 
   <ng-container matColumnDef="orderTotal">
     <th mat-header-cell *matHeaderCellDef> Order Total </th>
-    <td mat-cell *matCellDef="let element"> {{element | orderTotal}} </td>
+    <td mat-cell *matCellDef="let element"> {{element | orderTotal | price}} </td>
   </ng-container>
 
   <ng-container matColumnDef="viewOrders">

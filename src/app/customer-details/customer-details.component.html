@@ -1,7 +1,7 @@
-<div class="details-wrapper">
-  <img src="{{customer | genderPhoto}}">
+<div *ngIf="customer" class="details-wrapper">
+  <img src="{{customer.gender | genderPhoto}}">
   <div>
     <div class="name">{{customer | fullName}}</div>
-    <div>{{customer | address}}</div>
+    <div>{{customer.address | address}}</div>
   </div>
 </div>

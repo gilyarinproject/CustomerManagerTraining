@@ -19,21 +19,29 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { CustomerCardComponent } from './customer-card/customer-card.component';
-import { GenderPhotoPipe } from './gender-photo.pipe';
+import { GenderPhotoPipe } from './pipes/gender-photo.pipe';
 import { MatTableModule } from "@angular/material/table";
 import { ListViewComponent } from './list-view/list-view.component';
 import { MatSelectModule } from "@angular/material/select";
-import { CustomersServiceService } from "./customers-service.service";
+import { CustomersServiceService } from "./services/customers-service.service";
 import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
 import { MatListModule } from "@angular/material/list";
 import { MatDividerModule } from "@angular/material/divider";
-import { FullNamePipe } from './full-name.pipe';
-import { OrderTotalPipe } from './order-total.pipe';
-import { AddressPipe } from './address.pipe';
+import { FullNamePipe } from './pipes/full-name.pipe';
+import { OrderTotalPipe } from './pipes/order-total.pipe';
+import { AddressPipe } from './pipes/address.pipe';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { OrdersComponentComponent } from './orders-component/orders-component.component';
 import { AboutComponent } from './about/about.component';
-import { PricePipe } from './price.pipe';
+import { PricePipe } from './pipes/price.pipe';
+
+import { HttpClientModule } from "@angular/common/http";
+import { ApolloModule, Apollo } from "apollo-angular";
+import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -56,25 +64,40 @@ import { PricePipe } from './price.pipe';
     AboutComponent,
     PricePipe
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NoopAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatTableModule,
-    MatSelectModule,
-    MatListModule,
-    MatDividerModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NoopAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatTableModule,
+        MatSelectModule,
+        MatListModule,
+        MatDividerModule,
+        HttpClientModule,
+        ApolloModule,
+        HttpLinkModule,
+        MatProgressSpinnerModule,
+        BrowserAnimationsModule
+    ],
   providers: [CustomersServiceService],
   bootstrap: [AppComponent],
   entryComponents: [DialogAddCustomerComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    apollo: Apollo,
+    httpLink: HttpLink
+  ) {
+    apollo.create({
+      link: httpLink.create({uri: 'http://localhost:4000/graphql'}),
+      cache: new InMemoryCache()
+    })
+  }
+}

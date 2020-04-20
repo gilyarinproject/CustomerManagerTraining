@@ -1,23 +1,34 @@
 <div class="navbar-container">
-  <img src={{peopleImage}}>
-  <span>Customer Manager</span>
+  <img class="logo" src="./assets/images/people.png"
+       *ngIf="isUserLoggedIn"
+       routerLink="/customers">
+  <img class="logo" src="./assets/images/people.png"
+       *ngIf="!isUserLoggedIn">
+  <span class="logo"
+        *ngIf="isUserLoggedIn"
+        routerLink="/customers">
+       Customer Manager</span>
+  <span class="logo"
+        *ngIf="!isUserLoggedIn">
+       Customer Manager</span>
   <button routerLink="/customers"
-          [disabled]="loginLogout === 'Login'"
+          [disabled]="!isUserLoggedIn"
           routerLinkActive="clicked-button"
           class="left-button">
           <a routerLink="/customerInformation"
              routerLinkActive="clicked-button"></a>
           Customers</button>
   <button routerLink="/orders"
-          [disabled]="loginLogout === 'Login'"
+          [disabled]="!isUserLoggedIn"
           routerLinkActive="clicked-button"
           class="left-button">Orders</button>
   <button routerLink="/about"
-          [disabled]="loginLogout === 'Login'"
           routerLinkActive="clicked-button"
           class="left-button">About</button>
   <button routerLink="/login"
           routerLinkActive="clicked-button"
           (click)="loginLogoutClicked()"
-          class="right">{{loginLogout}}</button>
+          class="right">
+          {{ isUserLoggedIn ? 'Logout' : 'Login' }}
+          </button>
 </div>

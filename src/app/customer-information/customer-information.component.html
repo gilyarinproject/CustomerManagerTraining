@@ -6,33 +6,41 @@
 
   <div class="menu">
     <button mat-button
-            [ngClass]="menuOption === 'Customer Details' ? 'bold-option' : 'low-opacity-option'"
+            [ngClass]="menuOption === options.Details ? 'bold' : 'low-opacity-option'"
             (click)="onClickDetails()">
       <mat-icon>list</mat-icon>
       Customer Details
     </button>
     <button mat-button
-            [ngClass]="menuOption === 'Customer Orders' ? 'bold-option' : 'low-opacity-option'"
+            [ngClass]="menuOption === options.Orders ? 'bold' : 'low-opacity-option'"
             (click)="onClickOrders()">
       <mat-icon>local_offer</mat-icon>
       Customer Orders
     </button>
     <button mat-button
-            [ngClass]="menuOption === 'Edit Customer' ? 'bold-option' : 'low-opacity-option'"
+            [ngClass]="menuOption === options.Edit ? 'bold' : 'low-opacity-option'"
             (click)="onClickEdit()">
       <mat-icon>edit</mat-icon>
       Edit Customer
     </button>
   </div>
 
-  <div [ngSwitch]="menuOption" class="content-info">
-    <app-edit-customer *ngSwitchCase="'Edit Customer'" [customer]="customer"
+  <mat-spinner *ngIf="!customer"></mat-spinner>
+
+  <div [ngSwitch]="menuOption" class="content-info" *ngIf="customer">
+    <app-edit-customer *ngSwitchCase="options.Edit" [customer]="customer"
             (menuOptionChange)="onClickDetails()"></app-edit-customer>
-    <div *ngSwitchCase="'Customer Orders'" class="orders">
-      <span>Orders for {{customer | fullName}}</span>
-      <app-customer-orders [customer]="customer"></app-customer-orders>
+    <div *ngSwitchCase="options.Orders" class="orders">
+      <div *ngIf="!customer.orders" class="bold">
+        No Orders for {{customer | fullName}} were found
+      </div>
+      <div *ngIf="customer.orders">
+        <span>Orders for {{customer | fullName}}</span>
+        <app-customer-orders [customer]="customer"></app-customer-orders>
+      </div>
     </div>
-    <app-customer-details *ngSwitchCase="'Customer Details'" [customer]="customer"></app-customer-details>
+    <app-customer-details *ngSwitchCase="options.Details"
+                          [customer]="customer"></app-customer-details>
   </div>
 
 </div>

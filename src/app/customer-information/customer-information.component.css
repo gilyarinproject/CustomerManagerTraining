@@ -17,10 +17,15 @@
   margin-left: 1%;
 }
 
-.bold-option {
+.bold {
   font-weight: bold
 }
 
 .low-opacity-option {
   opacity: 0.5;
+}
+
+mat-spinner {
+  margin-left: 13%;
+  margin-top: 5%;
 }

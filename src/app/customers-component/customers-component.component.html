@@ -4,15 +4,16 @@
     <span> Customers</span>
   </div>
 
+
   <div class="menu">
     <button mat-button
-            [ngClass]="menuOption === 'Card View' ? 'bold-option' : 'low-opacity-option'"
+            [ngClass]="menuOption === options.CardView ? 'bold-option' : 'low-opacity-option'"
             (click)="onClickCard()">
       <mat-icon>view_module</mat-icon>
       Card View
     </button>
     <button mat-button
-            [ngClass]="menuOption === 'List View' ? 'bold-option' : 'low-opacity-option'"
+            [ngClass]="menuOption === options.ListView ? 'bold-option' : 'low-opacity-option'"
             (click)="onClickList()">
       <mat-icon>list</mat-icon>
       List View
@@ -28,14 +29,17 @@
       <input matInput (keyup)="searchCustomer($event)">
     </mat-form-field>
 
-    <div class="cards" *ngIf="menuOption === 'Card View'">
+    <mat-spinner *ngIf="!relevantCustomers"></mat-spinner>
+
+    <div class="cards" *ngIf="menuOption === options.CardView">
       <app-customer-card class="card" *ngFor="let customer of relevantCustomers"
                          [customer]="customer"></app-customer-card>
     </div>
 
-    <div class="list" *ngIf="menuOption === 'List View'">
+    <div class="list" *ngIf="menuOption === options.ListView">
       <app-list-view [customers]="relevantCustomers"></app-list-view>
     </div>
+
 
   </div>
 </div>

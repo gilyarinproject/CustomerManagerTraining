@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {DataDialogAddCustomer} from "../interfaces";
 import { FormsModule} from "@angular/forms";
-import { COUNTRIES } from '../interfaces';
+import {COUNTRIES} from "../enums/valid-countries";
+import {DataDialogAddCustomer} from "../models/DataDialogAddCustomer";
 
 @Component({
   selector: 'app-dialog-add-customer',

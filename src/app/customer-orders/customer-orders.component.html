@@ -1,4 +1,4 @@
-<div *ngIf="customer.orders" class="orders-wrapper">
+<div *ngIf="customer && customer.orders" class="orders-wrapper">
   <div class="list">
     <div class="list-item" *ngFor="let order of customer.orders">
       <span class="left">{{order.itemName}}</span>

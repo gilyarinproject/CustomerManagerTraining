@@ -3,6 +3,9 @@
     <mat-icon>folder_shared</mat-icon>
     <span>Orders</span>
   </div>
+
+  <mat-spinner *ngIf="!customersWithOrders"></mat-spinner>
+
   <div *ngFor="let customer of customersWithOrders">
     <div class="name">{{customer | fullName}}</div>
     <app-customer-orders [customer]="customer"></app-customer-orders>

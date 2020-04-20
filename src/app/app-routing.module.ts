@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {CustomersComponentComponent} from "./customers-component/customers-component.component";
 import {CustomerInformationComponent} from "./customer-information/customer-information.component";
 import {LoginFormComponent} from "./login-form/login-form.component";
-import {CustomerOrdersComponent} from "./customer-orders/customer-orders.component";
 import {OrdersComponentComponent} from "./orders-component/orders-component.component";
 import {AboutComponent} from "./about/about.component";
 

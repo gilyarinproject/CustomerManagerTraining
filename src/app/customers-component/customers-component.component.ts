@@ -1,49 +1,49 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {DialogAddCustomerComponent} from "../dialog-add-customer/dialog-add-customer.component";
-import {Customer, CustomersMenuOptions} from '../interfaces';
-import {CustomersServiceService} from "../customers-service.service";
+import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogAddCustomerComponent } from "../dialog-add-customer/dialog-add-customer.component";
+import { CustomersServiceService } from "../services/customers-service.service";
+import { Customer } from "../models/Customer";
+import { CustomersMenuOptions } from "../enums/CustomersMenuOptions";
 
 @Component({
-  selector: 'app-customers-component',
-  templateUrl: './customers-component.component.html',
-  styleUrls: ['./customers-component.component.css']
+  selector: "app-customers-component",
+  templateUrl: "./customers-component.component.html",
+  styleUrls: ["./customers-component.component.css"]
 })
-export class CustomersComponentComponent implements OnInit{
-
+export class CustomersComponentComponent implements OnInit {
   title: string;
-  newCustomer: Customer;
+  newCustomer: object;
   customers: Customer[];
   menuOption: CustomersMenuOptions;
+  options = CustomersMenuOptions;
   relevantCustomers: Customer[];
 
-  constructor(public dialog: MatDialog,
-              private customersService: CustomersServiceService) {
-    this.title = 'Add Customer';
+  constructor(
+    public dialog: MatDialog,
+    private customersService: CustomersServiceService
+  ) {
+    this.title = "Add Customer";
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.menuOption = CustomersMenuOptions.CardView;
     this.getCustomers();
-    this.relevantCustomers = this.customers;
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddCustomerComponent, {
-      width: '20%',
-      height: '45%',
-      data: {title: this.title}
+      width: "400px",
+      height: "500px",
+      data: { title: this.title }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.newCustomer = {
           firstName: result.firstName,
           lastName: result.lastName,
-          address: {
-            city: result.city,
-            country: result.country
-          },
+          city: result.city,
+          country: result.country,
           gender: result.gender
         };
         this.addCustomer(this.newCustomer);
@@ -52,30 +52,40 @@ export class CustomersComponentComponent implements OnInit{
   }
 
   getCustomers(): void {
-    this.customers = this.customersService.getCustomers();
+    this.customersService.getCustomers().subscribe(res => {
+      this.customers = res;
+      this.relevantCustomers = res;
+    });
   }
 
-  addCustomer(newCustomer: Customer): void {
-    this.customersService.addCustomer(newCustomer);
+  addCustomer(newCustomer: object): void {
+    this.customersService.addCustomer(newCustomer).subscribe(res => {
+      alert(res.firstName + " " + res.lastName + " added to customers!");
+      this.getCustomers();
+    });
   }
 
-  onClickCard() {
+  onClickCard(): void {
     this.menuOption = CustomersMenuOptions.CardView;
   }
 
-  onClickList() {
+  onClickList(): void {
     this.menuOption = CustomersMenuOptions.ListView;
   }
 
-  searchCustomer(event: any) {
-    if (event.target.value === ''){
+  searchCustomer(event: any): void {
+    if (event.target.value === "") {
       this.relevantCustomers = this.customers;
-    }
-    else {
-      this.relevantCustomers = this.customers.filter(customer =>
-          customer.firstName.toUpperCase().includes(event.target.value.toUpperCase())  ||
-          customer.lastName.toUpperCase().includes(event.target.value.toUpperCase()));
+    } else {
+      this.relevantCustomers = this.customers.filter(
+        customer =>
+          customer.firstName
+            .toUpperCase()
+            .includes(event.target.value.toUpperCase()) ||
+          customer.lastName
+            .toUpperCase()
+            .includes(event.target.value.toUpperCase())
+      );
     }
   }
-
 }
